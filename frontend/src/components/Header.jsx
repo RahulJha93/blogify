@@ -1,14 +1,23 @@
 import React, { useState } from "react";
-import logo from "../assets/logo.png";
 import Image from "./resuable/Image";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  useAuth,
+  UserButton,
+} from "@clerk/clerk-react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [open, setOpen] = useState(false);
+  const {getToken} = useAuth();
+ getToken().then((token) =>console.log(token))
   return (
     <div className="w-full h-16 md:h-20 flex items-center justify-between">
       {/* logo */}
       <div className="">
-        <Image src="logo.png" alt="blogify" w={128} h={128}/>
+        <Image src="logo.png" alt="blogify" w={128} h={128} />
       </div>
       {/* mobile-header */}
       <div className="md:hidden">
@@ -41,13 +50,20 @@ const Header = () => {
         <a href="">Most Popular</a>
         <a href="">About</a>
         <a href="">
-          <button className="py-2 px-4 bg-blue-800 text-white rounded-3xl">
-            Login 👋
-          </button>
+          <SignedOut>
+            <Link to="/login">
+              <button className="py-2 px-4 bg-blue-800 text-white rounded-3xl">
+                Login 👋
+              </button>
+            </Link>
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
         </a>
       </div>
     </div>
   );
 };
 
-export default Header;  
+export default Header;

@@ -11,6 +11,12 @@ const Image = ({src,urlEndpoint, w, h, alt }) => {
       loading="lazy"
       lqip={{ active: true, quality: 20 }}
       alt={alt}
+      // transformation={[
+      //   {
+      //   width:w,
+      //   height:h,
+      //   }
+      // ]}
     />
   );
 };
