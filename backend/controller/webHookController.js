@@ -2,9 +2,7 @@ import { Webhook } from "svix";
 import userModel from "../models/userModel.js";
 
 export const clerkWebHook = async (req, res) => {
-  const WEBHOOK_SECRET =
-    process.env.CLERK_WEBHOOK_SECRET ||
-    "whsec_GganeeoGNP8GvOwsvk4JwPQcdkYUka9q";
+  const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
   !WEBHOOK_SECRET && console.log("WEBHOOK_SECRET NEEDED");
 
   const payload = req.body;
